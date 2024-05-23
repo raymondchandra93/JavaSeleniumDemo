@@ -1,18 +1,21 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestCase {
-    WebDriver driver;
+	WebDriver driver;
 
-    @BeforeEach
-    public void beforeEach() {
-        driver = WebDriverManager.chromedriver().create();
-    }
-    @Test
+	@BeforeEach
+	public void beforeEach() {
+		driver = new ChromeDriver();
+	}
+
+	@Test
     public void myTestCase() {
         driver.get("https://applitools.com/helloworld/");
         WebElement numbers = driver.findElement(By.cssSelector("span.primary"));
@@ -34,11 +37,11 @@ public class TestCase {
 
         Assertions.assertEquals(titleD.isDisplayed(), true);
         Assertions.assertEquals(titleD.getText(), "D");
-        Assertions.assertEquals(titleD.getCssValue("color"), "rgba(70, 0, 255, 1)");`
+        Assertions.assertEquals(titleD.getCssValue("color"), "rgba(70, 0, 255, 1)");
     }
 
-    @AfterEach
-    public void afterEach() {
-        driver.close();
-    }
+	@AfterEach
+	public void afterEach() {
+		driver.close();
+	}
 }
